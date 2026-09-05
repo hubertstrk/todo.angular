@@ -1,8 +1,8 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {DetailComponent} from './detail.component';
-import {provideTranslateService} from '@ngx-translate/core';
-import {provideRouter} from '@angular/router';
+import { DetailComponent } from './detail.component';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideRouter } from '@angular/router';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
@@ -12,7 +12,7 @@ describe('DetailComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [],
       imports: [DetailComponent],
-      providers: [provideRouter([]), provideTranslateService()]
+      providers: [provideRouter([]), provideTranslateService()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DetailComponent);
@@ -26,8 +26,6 @@ describe('DetailComponent', () => {
 
   it('should render title in a h1 tag', () => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'PAGES.DETAIL.TITLE'
-    );
+    expect(compiled.querySelector('h1').textContent).toContain('PAGES.DETAIL.TITLE');
   });
 });

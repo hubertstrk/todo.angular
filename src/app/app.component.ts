@@ -4,11 +4,11 @@ import { APP_CONFIG } from '../environments/environment';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [RouterOutlet]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [RouterOutlet],
 })
 export class AppComponent {
   private electronService = inject(ElectronService);
@@ -22,7 +22,9 @@ export class AppComponent {
       console.log('Run in electron');
       console.log('Electron ipcRenderer', this.electronService.ipcRenderer);
       console.log('NodeJS childProcess', this.electronService.childProcess);
-      void this.electronService.ipcRenderer.invoke('app:get-version').then(v => console.log('App version:', v));
+      void this.electronService.ipcRenderer
+        .invoke('app:get-version')
+        .then((v) => console.log('App version:', v));
     } else {
       console.log('Run in browser');
     }
