@@ -1,8 +1,12 @@
-<hlm-card>
-  <h3 hlmCardTitle>{{ todo().title }}</h3>
-  <div hlmCardContent>
-    <div>{{ todo().isDone }}</div>
-    <div>{{ todo().description }}</div>
+<hlm-item variant="outline">
+  <hlm-item-content>
+    <hlm-item-title>{{ todo().title }}</hlm-item-title>
+    <hlm-checkbox [checked]="todo().checked" checkedChange="onCheckedChange" inputId="checked" />
+    <label hlmLabel for="checked">{{ todo().description }}</label>
     <div>{{ todo().createdAt }}</div>
-  </div>
-</hlm-card>
+  </hlm-item-content>
+
+  <hlm-item-actions>
+    <button hlmBtn variant="outline" (click)="onDelete()">Delete</button>
+  </hlm-item-actions>
+</hlm-item>

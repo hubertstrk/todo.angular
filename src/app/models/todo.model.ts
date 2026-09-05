@@ -8,6 +8,6 @@ export interface Todo {
   title: string;
   description: string;
   priority: Priority;
-  isDone: boolean;
+  checked: boolean;
   createdAt: Date;
 }

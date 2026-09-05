@@ -1,26 +1,33 @@
-import { Component, model } from '@angular/core';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { Component, input, output } from '@angular/core';
+import { HlmItemImports } from '@spartan-ng/helm/item';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 
 import { Todo } from '../../../models/todo.model';
 
 @Component({
   selector: 'app-todo-card',
   templateUrl: 'todo-card.component.html',
-  imports: [HlmCardImports]
+  imports: [HlmCheckboxImports, HlmItemImports]
 })
 
 export class TodoCardComponent {
-  todo = model.required<Todo>();
-
-  onIsDoneChanged(isDone: boolean): void {
-    this.todo.set({...this.todo(), isDone});
-  }
+  todo = input.required<Todo>();
+  todoChange = output<Todo>();
+  delete = output<Todo>();
 
   onTitleChanged(title: string): void {
-    this.todo.set({ ...this.todo(), title });
+    this.todoChange.emit({...this.todo(), title});
   }
 
   onDescriptionChanged(description: string): void {
-    this.todo.set({...this.todo(), description});
+    this.todoChange.emit({...this.todo(), description});
+  }
+
+  onCheckedChange(checked: boolean): void {
+    this.todoChange.emit({...this.todo(), checked});
+  }
+
+  onDelete(): void {
+    this.delete.emit(this.todo());
   }
 }
