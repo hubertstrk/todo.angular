@@ -1,0 +1,30 @@
+import { Component, inject } from '@angular/core';
+import { ElectronService } from './core/services';
+import { APP_CONFIG } from '../environments/environment';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: true,
+    imports: [RouterOutlet]
+})
+export class AppComponent {
+  private electronService = inject(ElectronService);
+
+  constructor() {
+    const electronService = this.electronService;
+
+    console.log('APP_CONFIG', APP_CONFIG);
+
+    if (electronService.isElectron) {
+      console.log('Run in electron');
+      console.log('Electron ipcRenderer', this.electronService.ipcRenderer);
+      console.log('NodeJS childProcess', this.electronService.childProcess);
+      void this.electronService.ipcRenderer.invoke('app:get-version').then(v => console.log('App version:', v));
+    } else {
+      console.log('Run in browser');
+    }
+  }
+}
