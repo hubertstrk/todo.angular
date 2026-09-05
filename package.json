@@ -36,8 +36,8 @@
     "electron:serve-tsc": "tsc -p tsconfig.serve.json",
     "electron:serve-tsc:watch": "tsc -p tsconfig.serve.json --watch --preserveWatchOutput",
     "electron:start": "electron . --serve",
-    "electron:serve": "wait-on tcp:4200 && npm run electron:serve-tsc && concurrently \"npm:electron:serve-tsc:watch\" \"npm:electron:start\"",
-    "electron:local": "npm run web:dev && electron .",
+    "electron:serve": "concurrently \"npm:ng:serve\" \"npm run electron:serve-tsc && npm:electron:start\"",
+    "electron:local": "npm run electron:serve-tsc && concurrently \"npm:ng:serve\" \"electron . --serve\"",
     "electron:build": "npm run web:prod && electron-builder build --publish=never",
     "test": "ng test --watch=false",
     "test:watch": "ng test",
@@ -55,8 +55,8 @@
     "@angular/language-service": "22.1.4",
     "@angular/platform-browser": "22.1.4",
     "@angular/router": "22.1.4",
-    "@ng-icons/core": "^32.2.0",
-    "@ng-icons/lucide": "^32.2.0",
+    "@ng-icons/core": "32.5.0",
+    "@ng-icons/lucide": "32.5.0",
     "@spartan-ng/brain": "1.4.1",
     "@tailwindcss/postcss": "4.3.3",
     "@tanstack/angular-charts": "0.16.0",
@@ -115,5 +115,12 @@
   },
   "browserslist": [
     "chrome 152"
-  ]
+  ],
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "lmdb@3.5.6": true,
+    "msgpackr-extract@3.0.4": true,
+    "nx@23.2.0": true,
+    "electron-winstaller@5.4.0": true
+  }
 }

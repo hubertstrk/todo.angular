@@ -3,11 +3,17 @@ import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideArrowUp } from '@ng-icons/lucide';
+
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     standalone: true,
-    imports: [CommonModule, RouterLink, TranslatePipe]
+    providers: [provideIcons({ lucideArrowUp })],
+    imports: [CommonModule, NgIcon, HlmButtonImports]
 })
 export class HomeComponent implements OnInit {
 
