@@ -1,8 +1,13 @@
-<div>
-  <h1 hlmH1>TODO</h1>
+<div class="p-6">
+  <h1 class="text-3xl font-bold mb-6">Todos</h1>
 
-  <button hlmBtn variant="outline">
-    <ng-icon name="lucideArrowUp" />
-    Button
-  </button>
+  <div class="space-y-4">
+    @for (todo of todos(); track todo.createdAt) {
+      <app-todo-card
+        [todo]="todo"
+        (todoChange)="onTodoChange($event)"
+        (delete)="onTodoDelete($event)"
+      />
+    }
+  </div>
 </div>

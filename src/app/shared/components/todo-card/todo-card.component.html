@@ -1,9 +1,14 @@
-<hlm-item variant="outline">
+<hlm-item variant="outline" class="mb-2">
   <hlm-item-content>
-    <hlm-item-title>{{ todo().title }}</hlm-item-title>
-    <hlm-checkbox [checked]="todo().checked" checkedChange="onCheckedChange" inputId="checked" />
-    <label hlmLabel for="checked">{{ todo().description }}</label>
-    <div>{{ todo().createdAt }}</div>
+    <hlm-item-title class="mb-1">{{ todo().title }}</hlm-item-title>
+    <div class="flex gap-2">
+      <hlm-checkbox
+        [checked]="todo().checked"
+        (checkedChange)="onChanged('checked', $event)"
+        inputId="todo-description"
+      />
+      <label hlmLabel for="todo-description">{{ todo().description }}</label>
+    </div>
   </hlm-item-content>
 
   <hlm-item-actions>
