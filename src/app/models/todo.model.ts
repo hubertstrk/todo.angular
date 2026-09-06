@@ -1,7 +1,7 @@
 export enum Priority {
   high,
   medium,
-  low
+  low,
 }
 
 export interface Todo {

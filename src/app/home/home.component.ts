@@ -18,7 +18,8 @@ export class HomeComponent {
   todos = signal<Todo[]>([
     {
       title: 'Learn Angular Signals',
-      description: 'Master the new signals API in Angular 22 and many other feature including spartan ui, typescript and a lot more stuff to visit',
+      description:
+        'Master the new signals API in Angular 22 and many other feature including spartan ui, typescript and a lot more stuff to visit',
       priority: Priority.high,
       checked: false,
       createdAt: new Date('2026-09-01'),
@@ -41,15 +42,11 @@ export class HomeComponent {
 
   onTodoChange(todo: Todo): void {
     this.todos.set(
-      this.todos().map((t) =>
-        t.title === todo.title ? todo : t
-      )
+      this.todos().map((t) => (t.title === todo.title ? todo : t))
     );
   }
 
   onTodoDelete(todo: Todo): void {
-    this.todos.set(
-      this.todos().filter((t) => t.title !== todo.title)
-    );
+    this.todos.set(this.todos().filter((t) => t.title !== todo.title));
   }
 }

@@ -12,6 +12,51 @@
   </hlm-item-content>
 
   <hlm-item-actions>
-    <button hlmBtn variant="outline" (click)="onDelete()">Delete</button>
+    <button hlmBtn variant="outline" [hlmDialogTriggerFor]="dialog">
+      Edit
+    </button>
+    <button hlmBtn variant="destructive" (click)="onDelete()">Delete</button>
   </hlm-item-actions>
 </hlm-item>
+
+<hlm-dialog #dialog showCloseButton closeOnOutsidePointerEvents>
+  <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[500px]">
+    <hlm-dialog-header>
+      <h3 hlmDialogTitle>Edit Todo</h3>
+    </hlm-dialog-header>
+
+    <fieldset hlmFieldSet>
+      @if (this._todo) {
+        <div hlmFieldGroup>
+          <div hlmField>
+            <label hlmFieldLabel for="field-input-title">Title</label>
+            <input
+              hlmInput
+              id="field-input-title"
+              [value]="this._todo.title"
+              (change)="this._todo.title = $event.target.value"
+            />
+          </div>
+          <div hlmField>
+            <label hlmFieldLabel for="field-input-description"
+              >Description</label
+            >
+            <input
+              hlmInput
+              id="field-input-description"
+              [value]="this._todo.description"
+              (change)="this._todo.description = $event.target.value"
+            />
+          </div>
+        </div>
+      }
+    </fieldset>
+
+    <hlm-dialog-footer>
+      <div class="flex gap-2">
+        <button hlmBtn hlmDialogClose variant="outline">Abbrechen</button>
+        <button hlmBtn hlmDialogClose (click)="saveTodo()">Speichern</button>
+      </div>
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>
