@@ -1,18 +1,41 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { provideIcons } from '@ng-icons/core';
-import { lucideArrowUp } from '@ng-icons/lucide';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideArrowUp, lucidePlus } from '@ng-icons/lucide';
 
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { Todo, Priority } from '../models/todo.model';
+import { HlmItemImports } from '@spartan-ng/helm/item';
+import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
+import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
+import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
+
+import { Todo, Priority, DefaultTodo } from '../models/todo.model';
 import { TodoCardComponent } from '../shared/components/todo-card/todo-card.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [provideIcons({ lucideArrowUp })],
-  imports: [CommonModule, HlmButtonImports, TodoCardComponent],
+  providers: [provideIcons({ lucideArrowUp, lucidePlus })],
+  imports: [
+    NgIcon,
+    CommonModule,
+    HlmButtonImports,
+    TodoCardComponent,
+    HlmButtonImports,
+    HlmCheckboxImports,
+    HlmItemImports,
+    HlmLabelImports,
+    HlmFieldImports,
+    HlmDialogImports,
+    HlmInputImports,
+    HlmTextareaImports,
+    HlmDialogTrigger,
+  ],
 })
 export class HomeComponent {
   todos = signal<Todo[]>([
@@ -40,6 +63,8 @@ export class HomeComponent {
     },
   ]);
 
+  todo: Todo = { ...DefaultTodo };
+
   onTodoChange(todo: Todo): void {
     this.todos.set(
       this.todos().map((t) => (t.title === todo.title ? todo : t))
@@ -48,5 +73,10 @@ export class HomeComponent {
 
   onTodoDelete(todo: Todo): void {
     this.todos.set(this.todos().filter((t) => t.title !== todo.title));
+  }
+
+  saveTodo() {
+    this.todos.set([...this.todos(), this.todo]);
+    this.todo = { ...DefaultTodo };
   }
 }

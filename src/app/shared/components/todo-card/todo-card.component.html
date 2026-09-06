@@ -13,9 +13,11 @@
 
   <hlm-item-actions>
     <button hlmBtn variant="outline" [hlmDialogTriggerFor]="dialog">
-      Edit
+      <ng-icon name="lucidePen" />
     </button>
-    <button hlmBtn variant="destructive" (click)="onDelete()">Delete</button>
+    <button hlmBtn variant="destructive" size="icon" (click)="onDelete()">
+      <ng-icon name="lucideX" />
+    </button>
   </hlm-item-actions>
 </hlm-item>
 

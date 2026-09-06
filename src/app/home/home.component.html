@@ -1,5 +1,10 @@
-<div class="p-6">
-  <h1 class="text-3xl font-bold mb-6">Todos</h1>
+<div class="py-3 px-6">
+  <div class="flex items-center justify-between mb-3">
+    <div class="text-2xl font-bold">Todos</div>
+    <button hlmBtn variant="outline" size="icon" [hlmDialogTriggerFor]="dialog">
+      <ng-icon name="lucidePlus" />
+    </button>
+  </div>
 
   <div class="space-y-4">
     @for (todo of todos(); track todo.createdAt) {
@@ -10,4 +15,44 @@
       />
     }
   </div>
+
+  <hlm-dialog #dialog showCloseButton closeOnOutsidePointerEvents>
+    <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[500px]">
+      <hlm-dialog-header>
+        <h3 hlmDialogTitle>Edit Todo</h3>
+      </hlm-dialog-header>
+
+      <fieldset hlmFieldSet>
+        <div hlmFieldGroup>
+          <div hlmField>
+            <label hlmFieldLabel for="field-input-title">Title</label>
+            <input
+              hlmInput
+              id="field-input-title"
+              [value]="this.todo.title"
+              (change)="this.todo.title = $event.target.value"
+            />
+          </div>
+          <div hlmField>
+            <label hlmFieldLabel for="field-input-description"
+              >Description</label
+            >
+            <input
+              hlmInput
+              id="field-input-description"
+              [value]="this.todo.description"
+              (change)="this.todo.description = $event.target.value"
+            />
+          </div>
+        </div>
+      </fieldset>
+
+      <hlm-dialog-footer>
+        <div class="flex gap-2">
+          <button hlmBtn hlmDialogClose variant="outline">Abbrechen</button>
+          <button hlmBtn hlmDialogClose (click)="saveTodo()">Speichern</button>
+        </div>
+      </hlm-dialog-footer>
+    </hlm-dialog-content>
+  </hlm-dialog>
 </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit, input, output } from '@angular/core';
 
+import { NgIcon, provideIcons } from '@ng-icons/core';
+
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmItemImports } from '@spartan-ng/helm/item';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
@@ -10,12 +12,16 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
 
+import { lucidePen, lucideX } from '@ng-icons/lucide';
+
 import { Todo } from '../../../models/todo.model';
 
 @Component({
   selector: 'app-todo-card',
   templateUrl: 'todo-card.component.html',
+  providers: [provideIcons({ lucidePen, lucideX })],
   imports: [
+    NgIcon,
     HlmButtonImports,
     HlmCheckboxImports,
     HlmItemImports,
@@ -39,7 +45,11 @@ export class TodoCardComponent implements OnInit {
   }
 
   saveTodo() {
-    this.todoChange.emit({...this.todo(), title: this._todo!.title, description: this._todo!.description})
+    this.todoChange.emit({
+      ...this.todo(),
+      title: this._todo!.title,
+      description: this._todo!.description,
+    });
   }
 
   onChanged<K extends keyof Todo>(prop: K, value: Todo[K]): void {
