@@ -1,8 +1,8 @@
 export enum Priority {
-  critical = 'critical',
-  high = 'high',
-  medium = 'medium',
-  low = 'low',
+  Critical = 'critical',
+  High = 'high',
+  Medium = 'medium',
+  Low = 'low',
 }
 
 export interface Todo {
@@ -16,7 +16,7 @@ export interface Todo {
 export const DefaultTodo: Todo = {
   title: '',
   description: '',
-  priority: Priority.medium,
+  priority: Priority.Medium,
   checked: false,
   createdAt: new Date(),
 };

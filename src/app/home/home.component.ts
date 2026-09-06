@@ -45,21 +45,28 @@ export class HomeComponent {
       title: 'Learn Angular Signals',
       description:
         'Master the new signals API in Angular 22 and many other feature including spartan ui, typescript and a lot more stuff to visit',
-      priority: Priority.high,
+      priority: Priority.Critical,
       checked: false,
       createdAt: new Date('2026-09-01'),
     },
     {
+      title: 'Build Todo App 1',
+      description: 'Create a complete todo application with Electron',
+      priority: Priority.High,
+      checked: false,
+      createdAt: new Date('2026-09-02'),
+    },
+    {
       title: 'Build Todo App',
       description: 'Create a complete todo application with Electron',
-      priority: Priority.high,
+      priority: Priority.Low,
       checked: false,
       createdAt: new Date('2026-09-02'),
     },
     {
       title: 'Setup ESLint & Prettier',
       description: 'Configure code formatting and linting',
-      priority: Priority.medium,
+      priority: Priority.Medium,
       checked: true,
       createdAt: new Date('2026-09-03'),
     },
@@ -68,11 +75,11 @@ export class HomeComponent {
   todo: Todo = { ...DefaultTodo };
 
   public readonly priorityOptions = [
-		{ label: 'Critical', value: 'critical' },
-		{ label: 'High', value: 'high' },
-		{ label: 'Medium', value: 'medium' },
-		{ label: 'Low', value: 'low' },
-	];
+    { label: 'Critical', value: 'critical' },
+    { label: 'High', value: 'high' },
+    { label: 'Medium', value: 'medium' },
+    { label: 'Low', value: 'low' },
+  ];
 
   onTodoChange(todo: Todo): void {
     this.todos.set(

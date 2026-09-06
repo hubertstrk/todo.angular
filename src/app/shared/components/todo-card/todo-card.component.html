@@ -1,13 +1,20 @@
-<hlm-item variant="outline" class="mb-2">
+<hlm-item variant="outline" class="mb-2 border-l-4">
   <hlm-item-content>
-    <hlm-item-title class="mb-1">{{ todo().title }}</hlm-item-title>
+    <hlm-item-title class="mb-1 text-md">
+      {{ todo().title }}
+    </hlm-item-title>
     <div class="flex gap-2">
       <hlm-checkbox
         [checked]="todo().checked"
         (checkedChange)="onChanged('checked', $event)"
         inputId="todo-description"
       />
-      <label hlmLabel for="todo-description">{{ todo().description }}</label>
+      <div class="flex flex-col">
+        <label hlmLabel for="todo-description">{{ todo().description }}</label>
+        <div [ngClass]="getPriorityClass(todo().priority)">
+          {{ 'PRIORITY.' + todo().priority | translate }}
+        </div>
+      </div>
     </div>
   </hlm-item-content>
 
@@ -24,14 +31,16 @@
 <hlm-dialog #dialog showCloseButton closeOnOutsidePointerEvents>
   <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[500px]">
     <hlm-dialog-header>
-      <h3 hlmDialogTitle>Edit Todo</h3>
+      <h3 hlmDialogTitle>{{ 'DIALOG.EDIT_TITLE' | translate }}</h3>
     </hlm-dialog-header>
 
     <fieldset hlmFieldSet>
       @if (this._todo) {
         <div hlmFieldGroup>
           <div hlmField>
-            <label hlmFieldLabel for="field-input-title">Title</label>
+            <label hlmFieldLabel for="field-input-title">{{
+              'FORM.TITLE' | translate
+            }}</label>
             <input
               hlmInput
               id="field-input-title"
@@ -40,9 +49,9 @@
             />
           </div>
           <div hlmField>
-            <label hlmFieldLabel for="field-input-description"
-              >Description</label
-            >
+            <label hlmFieldLabel for="field-input-description">{{
+              'FORM.DESCRIPTION' | translate
+            }}</label>
             <input
               hlmInput
               id="field-input-description"
@@ -56,8 +65,12 @@
 
     <hlm-dialog-footer>
       <div class="flex gap-2">
-        <button hlmBtn hlmDialogClose variant="outline">Abbrechen</button>
-        <button hlmBtn hlmDialogClose (click)="saveTodo()">Speichern</button>
+        <button hlmBtn hlmDialogClose variant="outline">
+          {{ 'BUTTONS.CANCEL' | translate }}
+        </button>
+        <button hlmBtn hlmDialogClose (click)="saveTodo()">
+          {{ 'BUTTONS.SAVE' | translate }}
+        </button>
       </div>
     </hlm-dialog-footer>
   </hlm-dialog-content>

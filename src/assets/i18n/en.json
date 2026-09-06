@@ -1,12 +1,35 @@
 {
-  "PAGES": {
-    "HOME": {
-      "TITLE": "App works !",
-      "GO_TO_DETAIL": "Go to Detail"
-    },
-    "DETAIL": {
-      "TITLE": "Detail page !",
-      "BACK_TO_HOME": "Back to Home"
-    }
+  "TODO": {
+    "TITLE": "My Todos",
+    "EMPTY": "No todos yet. Create one to get started!"
+  },
+  "FORM": {
+    "TITLE": "Title",
+    "DESCRIPTION": "Description",
+    "PRIORITY": "Priority",
+    "STATUS": "Status"
+  },
+  "DIALOG": {
+    "EDIT_TITLE": "Edit Todo",
+    "EDIT_DESCRIPTION": "Update your todo details"
+  },
+  "BUTTONS": {
+    "ADD": "Add Todo",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "CLOSE": "Close"
+  },
+  "PRIORITY": {
+    "critical": "Critical",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "MESSAGES": {
+    "DELETED": "Todo deleted successfully",
+    "SAVED": "Todo saved successfully",
+    "ERROR": "An error occurred"
   }
 }

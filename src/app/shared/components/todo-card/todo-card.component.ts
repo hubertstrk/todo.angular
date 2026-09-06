@@ -1,5 +1,6 @@
 import { Component, OnInit, input, output } from '@angular/core';
-
+import { NgClass } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -14,14 +15,16 @@ import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
 
 import { lucidePen, lucideX } from '@ng-icons/lucide';
 
-import { Todo } from '../../../models/todo.model';
+import { Priority, Todo } from '../../../models/todo.model';
 
 @Component({
   selector: 'app-todo-card',
   templateUrl: 'todo-card.component.html',
   providers: [provideIcons({ lucidePen, lucideX })],
   imports: [
+    NgClass,
     NgIcon,
+    TranslatePipe,
     HlmButtonImports,
     HlmCheckboxImports,
     HlmItemImports,
@@ -58,5 +61,15 @@ export class TodoCardComponent implements OnInit {
 
   onDelete(): void {
     this.delete.emit(this.todo());
+  }
+
+  getPriorityClass(priority: Priority): string {
+    const classes: Record<Priority, string> = {
+      low: 'text-green-500',
+      medium: 'text-blue-500',
+      high: 'text-orange-500',
+      critical: 'text-red-500',
+    };
+    return classes[priority];
   }
 }

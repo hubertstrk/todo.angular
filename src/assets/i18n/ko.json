@@ -1,4 +1,37 @@
 {
+  "TODO": {
+    "TITLE": "내 할일",
+    "EMPTY": "할일이 없습니다. 새로 만들어보세요!"
+  },
+  "FORM": {
+    "TITLE": "제목",
+    "DESCRIPTION": "설명",
+    "PRIORITY": "우선순위",
+    "STATUS": "상태"
+  },
+  "DIALOG": {
+    "EDIT_TITLE": "할일 수정",
+    "EDIT_DESCRIPTION": "할일 세부사항을 업데이트하세요"
+  },
+  "BUTTONS": {
+    "ADD": "할일 추가",
+    "EDIT": "수정",
+    "DELETE": "삭제",
+    "SAVE": "저장",
+    "CANCEL": "취소",
+    "CLOSE": "닫기"
+  },
+  "PRIORITY": {
+    "critical": "긴급",
+    "high": "높음",
+    "medium": "중간",
+    "low": "낮음"
+  },
+  "MESSAGES": {
+    "DELETED": "할일이 삭제되었습니다",
+    "SAVED": "할일이 저장되었습니다",
+    "ERROR": "오류가 발생했습니다"
+  },
   "PAGES": {
     "HOME": {
       "TITLE": "앱이 작동합니다!",
