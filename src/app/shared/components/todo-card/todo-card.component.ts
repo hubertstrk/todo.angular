@@ -6,6 +6,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmItemImports } from '@spartan-ng/helm/item';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
@@ -26,9 +27,10 @@ import { Priority, Todo } from '../../../models/todo.model';
     NgIcon,
     TranslatePipe,
     HlmButtonImports,
-    HlmCheckboxImports,
     HlmItemImports,
+    HlmCheckboxImports,
     HlmLabelImports,
+    HlmTooltipImports,
     HlmFieldImports,
     HlmDialogImports,
     HlmInputImports,
