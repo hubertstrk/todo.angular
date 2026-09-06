@@ -1,7 +1,8 @@
 export enum Priority {
-  high,
-  medium,
-  low,
+  critical = 'critical',
+  high = 'high',
+  medium = 'medium',
+  low = 'low',
 }
 
 export interface Todo {

@@ -5,6 +5,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucidePlus } from '@ng-icons/lucide';
 
 import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmItemImports } from '@spartan-ng/helm/item';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
@@ -25,7 +26,7 @@ import { TodoCardComponent } from '../shared/components/todo-card/todo-card.comp
     NgIcon,
     CommonModule,
     HlmButtonImports,
-    TodoCardComponent,
+    HlmSelectImports,
     HlmButtonImports,
     HlmCheckboxImports,
     HlmItemImports,
@@ -35,6 +36,7 @@ import { TodoCardComponent } from '../shared/components/todo-card/todo-card.comp
     HlmInputImports,
     HlmTextareaImports,
     HlmDialogTrigger,
+    TodoCardComponent,
   ],
 })
 export class HomeComponent {
@@ -65,6 +67,13 @@ export class HomeComponent {
 
   todo: Todo = { ...DefaultTodo };
 
+  public readonly priorityOptions = [
+		{ label: 'Critical', value: 'critical' },
+		{ label: 'High', value: 'high' },
+		{ label: 'Medium', value: 'medium' },
+		{ label: 'Low', value: 'low' },
+	];
+
   onTodoChange(todo: Todo): void {
     this.todos.set(
       this.todos().map((t) => (t.title === todo.title ? todo : t))
@@ -73,6 +82,11 @@ export class HomeComponent {
 
   onTodoDelete(todo: Todo): void {
     this.todos.set(this.todos().filter((t) => t.title !== todo.title));
+  }
+
+  setPriority(value: any): void {
+    // this.todo.priority = value;
+    console.log(value);
   }
 
   saveTodo() {

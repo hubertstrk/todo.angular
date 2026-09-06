@@ -34,6 +34,24 @@
             />
           </div>
           <div hlmField>
+            <label hlmFieldLabel for="field-input-priority">Priority</label>
+            <hlm-select
+              [value]="todo.priority"
+              (valueChange)="todo.priority = $event!"
+            >
+              <hlm-select-trigger>
+                <hlm-select-value placeholder="Priority" />
+              </hlm-select-trigger>
+              <hlm-select-content *hlmSelectPortal>
+                @for (item of priorityOptions; track item.value) {
+                  <hlm-select-item [value]="item.value">{{
+                    item.label
+                  }}</hlm-select-item>
+                }
+              </hlm-select-content>
+            </hlm-select>
+          </div>
+          <div hlmField>
             <label hlmFieldLabel for="field-input-description"
               >Description</label
             >
