@@ -6,17 +6,17 @@ export enum Priority {
 }
 
 export interface Todo {
+  id: number;
   title: string;
   description: string;
   priority: Priority;
   checked: boolean;
-  createdAt: Date;
 }
 
 export const DefaultTodo: Todo = {
+  id: new Date().getTime(),
   title: '',
   description: '',
   priority: Priority.Medium,
   checked: false,
-  createdAt: new Date(),
 };

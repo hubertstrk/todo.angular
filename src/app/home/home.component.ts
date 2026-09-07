@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -15,8 +15,9 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
 
-import { Todo, Priority, DefaultTodo } from '../models/todo.model';
+import { Todo, DefaultTodo } from '../models/todo.model';
 import { TodoCardComponent } from '../shared/components/todo-card/todo-card.component';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-home',
@@ -39,38 +40,10 @@ import { TodoCardComponent } from '../shared/components/todo-card/todo-card.comp
     TodoCardComponent,
   ],
 })
-export class HomeComponent {
-  todos = signal<Todo[]>([
-    {
-      title: 'Learn Angular Signals',
-      description:
-        'Master the new signals API in Angular 22 and many other feature including spartan ui, typescript and a lot more stuff to visit',
-      priority: Priority.Critical,
-      checked: false,
-      createdAt: new Date('2026-09-01'),
-    },
-    {
-      title: 'Build Todo App 1',
-      description: 'Create a complete todo application with Electron',
-      priority: Priority.High,
-      checked: false,
-      createdAt: new Date('2026-09-02'),
-    },
-    {
-      title: 'Build Todo App',
-      description: 'Create a complete todo application with Electron',
-      priority: Priority.Low,
-      checked: false,
-      createdAt: new Date('2026-09-02'),
-    },
-    {
-      title: 'Setup ESLint & Prettier',
-      description: 'Configure code formatting and linting',
-      priority: Priority.Medium,
-      checked: true,
-      createdAt: new Date('2026-09-03'),
-    },
-  ]);
+export class HomeComponent implements OnInit {
+  todos = signal<Todo[]>([]);
+
+  service = inject(TodoService);
 
   todo: Todo = { ...DefaultTodo };
 
@@ -81,23 +54,34 @@ export class HomeComponent {
     { label: 'Low', value: 'low' },
   ];
 
-  onTodoChange(todo: Todo): void {
+  async updateTodo(todo: Todo): Promise<void> {
     this.todos.set(
-      this.todos().map((t) => (t.title === todo.title ? todo : t))
+      this.todos().map((t) => (t.id === todo.id ? todo : t))
     );
+    await this.service.update(todo);
+    console.info('todo succesfully updated')
   }
 
-  onTodoDelete(todo: Todo): void {
-    this.todos.set(this.todos().filter((t) => t.title !== todo.title));
+  async deleteTodo(todo: Todo): Promise<void> {
+    this.todos.set(this.todos().filter((t) => t.id !== todo.id));
+    await this.service.delete(todo);
+    console.info('todo succesfully deleted');
   }
 
-  setPriority(value: any): void {
-    // this.todo.priority = value;
-    console.log(value);
-  }
-
-  saveTodo() {
+  async saveNewTodo(): Promise<void> {
     this.todos.set([...this.todos(), this.todo]);
+    await this.service.save(this.todo);
     this.todo = { ...DefaultTodo };
+    console.info('todo succesfully saved')
+  }
+
+  ngOnInit(): void {
+    const projectPath = this.service.createProjectFolder();
+    console.info(`Project Path: ${projectPath}`);
+
+    void this.service.readAll().then((todos: Todo[]) => {
+      this.todos.set(todos);
+      console.info(`${this.todos.length} todos successfully read`)
+    });
   }
 }

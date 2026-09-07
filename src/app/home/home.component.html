@@ -1,17 +1,16 @@
 <div class="py-3 px-6">
   <div class="flex items-center justify-between mb-3">
-    <div class="text-2xl font-bold">Todos</div>
     <button hlmBtn variant="outline" size="icon" [hlmDialogTriggerFor]="dialog">
       <ng-icon name="lucidePlus" />
     </button>
   </div>
 
   <div class="space-y-4">
-    @for (todo of todos(); track todo.createdAt) {
+    @for (todo of todos(); track todo.id) {
       <app-todo-card
         [todo]="todo"
-        (todoChange)="onTodoChange($event)"
-        (delete)="onTodoDelete($event)"
+        (todoChange)="updateTodo($event)"
+        (delete)="deleteTodo($event)"
       />
     }
   </div>
@@ -68,7 +67,9 @@
       <hlm-dialog-footer>
         <div class="flex gap-2">
           <button hlmBtn hlmDialogClose variant="outline">Abbrechen</button>
-          <button hlmBtn hlmDialogClose (click)="saveTodo()">Speichern</button>
+          <button hlmBtn hlmDialogClose (click)="saveNewTodo()">
+            Speichern
+          </button>
         </div>
       </hlm-dialog-footer>
     </hlm-dialog-content>
