@@ -1,0 +1,49 @@
+<div class="flex items-center justify-between">
+  <div class="flex items-center gap-2">
+    <hlm-checkbox [checked]="todo().checked"></hlm-checkbox>
+    <div>
+      {{ this.todo().description }}
+    </div>
+  </div>
+  <div class=" flex gap-1">
+    <button hlmBtn variant="outline" [hlmDialogTriggerFor]="dialog">
+      <ng-icon name="lucidePen" />
+    </button>
+    <button hlmBtn variant="destructive" size="icon" (click)="deleteTodo()">
+      <ng-icon name="lucideX" />
+    </button>
+  </div>
+</div>
+
+<hlm-dialog #dialog showCloseButton closeOnOutsidePointerEvents>
+  <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[500px]">
+    <hlm-dialog-header>
+      <h3 hlmDialogTitle>{{ 'DIALOG.EDIT_TITLE' | translate }}</h3>
+    </hlm-dialog-header>
+
+    <fieldset hlmFieldSet>
+      @if (this.todoBuffer) {
+      <div hlmFieldGroup>
+        <div hlmField>
+          <label hlmFieldLabel for="field-input-description">{{
+            'FORM.DESCRIPTION' | translate
+            }}</label>
+          <input hlmInput id="field-input-description" [value]="this.todoBuffer.description"
+            (change)="this.todoBuffer.description = $event.target.value" />
+        </div>
+      </div>
+      }
+    </fieldset>
+
+    <hlm-dialog-footer>
+      <div class="flex gap-2">
+        <button hlmBtn hlmDialogClose variant="outline">
+          {{ 'BUTTONS.CANCEL' | translate }}
+        </button>
+        <button hlmBtn hlmDialogClose (click)="saveTodo()">
+          {{ 'BUTTONS.SAVE' | translate }}
+        </button>
+      </div>
+    </hlm-dialog-footer>
+  </hlm-dialog-content>
+</hlm-dialog>

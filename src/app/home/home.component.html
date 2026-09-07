@@ -5,9 +5,9 @@
     </button>
   </div>
 
-  <div class="space-y-4">
+  <div class="flex flex-col gap-1">
     @for (todo of todos(); track todo.id) {
-    <app-todo-card [todo]="todo" (todoChange)="updateTodo($event)" (delete)="deleteTodo($event)" />
+    <app-todo-item [todo]="todo" (todoChange)="updateTodo($event)" (delete)="deleteTodo($event)" />
     }
   </div>
 

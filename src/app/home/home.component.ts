@@ -16,7 +16,7 @@ import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
 
 import { Todo, DefaultTodo } from '../models/todo.model';
-import { TodoCardComponent } from '../shared/components/todo-card/todo-card.component';
+import { TodoItemComponent} from '../shared/components/todo-item/todo-item.component'
 import { TodoService } from '../services/todo.service';
 
 @Component({
@@ -37,7 +37,7 @@ import { TodoService } from '../services/todo.service';
     HlmInputImports,
     HlmTextareaImports,
     HlmDialogTrigger,
-    TodoCardComponent,
+    TodoItemComponent,
   ],
 })
 export class HomeComponent implements OnInit {
