@@ -1,6 +1,17 @@
 <div class="flex items-center justify-between">
   <div class="flex items-center gap-2">
-    <hlm-checkbox [checked]="todo().checked"></hlm-checkbox>
+    <!-- <hlm-checkbox [checked]="todo().checked"></hlm-checkbox> -->
+
+    <div (click)="toggleChecked()">
+      @if(this.todo().checked) {
+      <ng-icon name="lucideSquareCheckBig" />
+      }
+      @if(!this.todo().checked) {
+      <ng-icon name="lucideSquare" />
+      }
+
+    </div>
+
     <div>
       {{ this.todo().description }}
     </div>
