@@ -1,16 +1,8 @@
-<hlm-item [ngClass]="getPriorityBackgroundClass(this.todo().priority)" variant="outline" class="mb-2">
+<hlm-item variant="outline" class="mb-2">
   <hlm-item-content>
-    <hlm-item-title class="mb-1 text-md">
-      {{ todo().title }}
-    </hlm-item-title>
     <div class="flex items-center gap-2">
       <hlm-checkbox [checked]="todo().checked" (checkedChange)="onChanged('checked', $event)" />
-      <div class="flex flex-col">
-        <label hlmLabel>{{ todo().description }}</label>
-        <!-- <div [ngClass]="getPriorityClass(todo().priority)">
-          {{ 'PRIORITY.' + todo().priority | translate }}
-        </div> -->
-      </div>
+      <span>{{ todo().description }}</span>
     </div>
   </hlm-item-content>
 
@@ -33,13 +25,6 @@
     <fieldset hlmFieldSet>
       @if (this._todo) {
       <div hlmFieldGroup>
-        <div hlmField>
-          <label hlmFieldLabel for="field-input-title">{{
-            'FORM.TITLE' | translate
-            }}</label>
-          <input hlmInput id="field-input-title" [value]="this._todo.title"
-            (change)="this._todo.title = $event.target.value" />
-        </div>
         <div hlmField>
           <label hlmFieldLabel for="field-input-description">{{
             'FORM.DESCRIPTION' | translate

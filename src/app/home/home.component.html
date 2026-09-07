@@ -7,11 +7,7 @@
 
   <div class="space-y-4">
     @for (todo of todos(); track todo.id) {
-      <app-todo-card
-        [todo]="todo"
-        (todoChange)="updateTodo($event)"
-        (delete)="deleteTodo($event)"
-      />
+    <app-todo-card [todo]="todo" (todoChange)="updateTodo($event)" (delete)="deleteTodo($event)" />
     }
   </div>
 
@@ -24,42 +20,24 @@
       <fieldset hlmFieldSet>
         <div hlmFieldGroup>
           <div hlmField>
-            <label hlmFieldLabel for="field-input-title">Title</label>
-            <input
-              hlmInput
-              id="field-input-title"
-              [value]="this.todo.title"
-              (change)="this.todo.title = $event.target.value"
-            />
-          </div>
-          <div hlmField>
             <label hlmFieldLabel for="field-input-priority">Priority</label>
-            <hlm-select
-              [value]="todo.priority"
-              (valueChange)="todo.priority = $event!"
-            >
+            <hlm-select [value]="todo.priority" (valueChange)="todo.priority = $event!">
               <hlm-select-trigger>
                 <hlm-select-value placeholder="Priority" />
               </hlm-select-trigger>
               <hlm-select-content *hlmSelectPortal>
                 @for (item of priorityOptions; track item.value) {
-                  <hlm-select-item [value]="item.value">{{
-                    item.label
+                <hlm-select-item [value]="item.value">{{
+                  item.label
                   }}</hlm-select-item>
                 }
               </hlm-select-content>
             </hlm-select>
           </div>
           <div hlmField>
-            <label hlmFieldLabel for="field-input-description"
-              >Description</label
-            >
-            <input
-              hlmInput
-              id="field-input-description"
-              [value]="this.todo.description"
-              (change)="this.todo.description = $event.target.value"
-            />
+            <label hlmFieldLabel for="field-input-description">Description</label>
+            <input hlmInput id="field-input-description" [value]="this.todo.description"
+              (change)="this.todo.description = $event.target.value" />
           </div>
         </div>
       </fieldset>

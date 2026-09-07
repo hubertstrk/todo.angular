@@ -1,5 +1,4 @@
 import { Component, OnInit, input, output } from '@angular/core';
-import { NgClass } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
@@ -23,7 +22,6 @@ import { Priority, Todo } from '../../../models/todo.model';
   templateUrl: 'todo-card.component.html',
   providers: [provideIcons({ lucidePen, lucideX })],
   imports: [
-    NgClass,
     NgIcon,
     TranslatePipe,
     HlmButtonImports,
@@ -52,7 +50,6 @@ export class TodoCardComponent implements OnInit {
   saveTodo() {
     this.todoChange.emit({
       ...this.todo(),
-      title: this._todo!.title,
       description: this._todo!.description,
     });
   }
