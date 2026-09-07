@@ -6,8 +6,9 @@
       <div class="text-sm">{{this.doneTodos().length}} / {{this.todos().length}}</div>
     </div>
     <div class="flex items-center justify-between mb-3">
-      <button hlmBtn variant="outline" size="icon" [hlmDialogTriggerFor]="dialog">
+      <button hlmBtn variant="outline" [hlmDialogTriggerFor]="dialog">
         <ng-icon name="lucidePlus" />
+        Neu
       </button>
     </div>
   </div>
@@ -19,7 +20,7 @@
   </div>
 
   <hlm-dialog #dialog showCloseButton closeOnOutsidePointerEvents>
-    <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[90%] sm:max-w-none lg:w-1/2">
+    <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-4xl">
       <hlm-dialog-header>
         <h3 hlmDialogTitle>Add Todo</h3>
       </hlm-dialog-header>

@@ -9,20 +9,18 @@
       }
     </div>
 
-    <div [ngClass]="this.todo().checked ? 'line-through': ''">{{ this.todo().description }}</div>
+    <button type="button" class="cursor-pointer text-left" [ngClass]="this.todo().checked ? 'line-through': ''"
+      [hlmDialogTriggerFor]="dialog">{{ this.todo().description }}</button>
   </div>
   <div class=" flex gap-1">
-    <button hlmBtn variant="outline" [hlmDialogTriggerFor]="dialog">
-      <ng-icon name="lucidePen" />
-    </button>
-    <button hlmBtn variant="destructive" size="icon" (click)="deleteTodo()">
-      <ng-icon name="lucideX" />
+    <button hlmBtn variant="outline" size="icon" (click)="deleteTodo()">
+      <ng-icon name="lucideTrash" />
     </button>
   </div>
 </div>
 
 <hlm-dialog #dialog showCloseButton closeOnOutsidePointerEvents>
-  <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[90%] sm:max-w-none lg:w-1/2">
+  <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-4xl">
     <hlm-dialog-header>
       <h3 hlmDialogTitle>{{ 'DIALOG.EDIT_TITLE' | translate }}</h3>
     </hlm-dialog-header>

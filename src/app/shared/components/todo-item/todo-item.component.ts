@@ -16,13 +16,13 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
 
-import { lucidePen, lucideX, lucideSquare, lucideSquareCheckBig } from '@ng-icons/lucide';
+import { lucideTrash, lucideSquare, lucideSquareCheckBig } from '@ng-icons/lucide';
 import { Todo } from '../../../models/todo.model';
 
 @Component({
   selector: 'app-todo-item',
   templateUrl: 'todo-item.component.html',
-  providers: [provideIcons({ lucidePen, lucideX, lucideSquare, lucideSquareCheckBig })],
+  providers: [provideIcons({ lucideTrash, lucideSquare, lucideSquareCheckBig })],
   imports: [
     NgClass,
     NgIcon,
