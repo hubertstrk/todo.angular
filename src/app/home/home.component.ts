@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -53,6 +53,10 @@ export class HomeComponent implements OnInit {
     { label: 'Medium', value: 'medium' },
     { label: 'Low', value: 'low' },
   ];
+
+  doneTodos = computed(() => {
+    return this.todos().filter(x => x.checked);
+  })
 
   async updateTodo(todo: Todo): Promise<void> {
     this.todos.set(

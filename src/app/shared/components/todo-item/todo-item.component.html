@@ -1,20 +1,15 @@
 <div class="flex items-center justify-between">
   <div class="flex items-center gap-2">
-    <!-- <hlm-checkbox [checked]="todo().checked"></hlm-checkbox> -->
-
-    <div (click)="toggleChecked()">
+    <div class="mt-1" (click)="toggleChecked()">
       @if(this.todo().checked) {
       <ng-icon name="lucideSquareCheckBig" />
       }
       @if(!this.todo().checked) {
       <ng-icon name="lucideSquare" />
       }
-
     </div>
 
-    <div>
-      {{ this.todo().description }}
-    </div>
+    <div [ngClass]="this.todo().checked ? 'line-through': ''">{{ this.todo().description }}</div>
   </div>
   <div class=" flex gap-1">
     <button hlmBtn variant="outline" [hlmDialogTriggerFor]="dialog">
@@ -27,7 +22,7 @@
 </div>
 
 <hlm-dialog #dialog showCloseButton closeOnOutsidePointerEvents>
-  <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[500px]">
+  <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[90%] sm:max-w-none lg:w-1/2">
     <hlm-dialog-header>
       <h3 hlmDialogTitle>{{ 'DIALOG.EDIT_TITLE' | translate }}</h3>
     </hlm-dialog-header>

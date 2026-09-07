@@ -2,6 +2,8 @@ import { Component, input, output, OnInit } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
+import { NgClass } from '@angular/common';
+
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmToggleImports } from '@spartan-ng/helm/toggle';
@@ -13,6 +15,7 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
+
 import { lucidePen, lucideX, lucideSquare, lucideSquareCheckBig } from '@ng-icons/lucide';
 import { Todo } from '../../../models/todo.model';
 
@@ -21,6 +24,7 @@ import { Todo } from '../../../models/todo.model';
   templateUrl: 'todo-item.component.html',
   providers: [provideIcons({ lucidePen, lucideX, lucideSquare, lucideSquareCheckBig })],
   imports: [
+    NgClass,
     NgIcon,
     TranslatePipe,
     HlmButtonImports,

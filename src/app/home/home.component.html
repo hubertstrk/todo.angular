@@ -1,8 +1,15 @@
 <div class="py-3 px-6">
-  <div class="flex items-center justify-between mb-3">
-    <button hlmBtn variant="outline" size="icon" [hlmDialogTriggerFor]="dialog">
-      <ng-icon name="lucidePlus" />
-    </button>
+
+  <div class="flex justify-between mb-3">
+    <div>
+      <div class="text-2xl">Todos</div>
+      <div class="text-sm">{{this.doneTodos().length}} / {{this.todos().length}}</div>
+    </div>
+    <div class="flex items-center justify-between mb-3">
+      <button hlmBtn variant="outline" size="icon" [hlmDialogTriggerFor]="dialog">
+        <ng-icon name="lucidePlus" />
+      </button>
+    </div>
   </div>
 
   <div class="flex flex-col gap-1">
@@ -12,7 +19,7 @@
   </div>
 
   <hlm-dialog #dialog showCloseButton closeOnOutsidePointerEvents>
-    <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[500px]">
+    <hlm-dialog-content *hlmDialogPortal="let ctx" class="w-[90%] sm:max-w-none lg:w-1/2">
       <hlm-dialog-header>
         <h3 hlmDialogTitle>Add Todo</h3>
       </hlm-dialog-header>
