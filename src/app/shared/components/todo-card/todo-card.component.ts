@@ -65,12 +65,12 @@ export class TodoCardComponent implements OnInit {
     this.delete.emit(this.todo());
   }
 
-  getPriorityClass(priority: Priority): string {
+  getPriorityBackgroundClass(priority: Priority): string {
     const classes: Record<Priority, string> = {
-      low: 'text-green-500',
-      medium: 'text-blue-500',
-      high: 'text-orange-500',
-      critical: 'text-red-500',
+      low: 'border-l-5 border-l-green-500/60',
+      medium: 'border-l-5 border-l-blue-500/60',
+      high: 'border-l-5 border-l-orange-500/60',
+      critical: 'border-l-5 border-l-red-500/60',
     };
     return classes[priority];
   }

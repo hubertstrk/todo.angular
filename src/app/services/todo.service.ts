@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ElectronService } from '../core/services/electron/electron.service';
 import { Todo } from '../models/todo.model';
 
-const ProjectFolderName = 'app.todo.angular';
+const ProjectFolderName = '.todo.app.angular';
 
 /**
  * Todo Write/Read Service

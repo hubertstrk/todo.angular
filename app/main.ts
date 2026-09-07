@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain, screen} from 'electron';
+import {app, BrowserWindow, ipcMain, Menu, screen} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -7,6 +7,9 @@ const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
 function createWindow(): BrowserWindow {
+
+  // Drop the default File/Edit/View/Window/Help menu.
+  Menu.setApplicationMenu(null);
 
   const size = screen.getPrimaryDisplay().workAreaSize;
 

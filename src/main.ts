@@ -15,7 +15,6 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PageNotFoundComponent } from './app/shared/components';
 import { HomeComponent } from './app/home/home.component';
-import { DetailComponent } from './app/detail/detail.component';
 
 if (APP_CONFIG.production) {
   enableProdMode();
@@ -42,10 +41,6 @@ bootstrapApplication(AppComponent, {
       {
         path: 'home',
         component: HomeComponent,
-      },
-      {
-        path: 'detail',
-        component: DetailComponent,
       },
       {
         path: '**',
