@@ -12,9 +12,11 @@ export interface Todo {
   checked: boolean;
 }
 
-export const DefaultTodo: Todo = {
-  id: new Date().getTime(),
-  description: '',
-  priority: Priority.Medium,
-  checked: false,
+export const createDefaultTodo = (): Todo => {
+  return {
+    description: '',
+    priority: Priority.Medium,
+    checked: false,
+    id: new Date().getTime(),
+  };
 };

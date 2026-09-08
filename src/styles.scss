@@ -12,12 +12,15 @@ html,
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100vw;
 
-  height: 100%;
   font-family: var(--font-sans);
+  font-size: calc(100% * var(--ui-scale));
 }
 
 :root {
+  --ui-scale: 1.1;
   color-scheme: light;
 
   --font-sans:

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucidePlus } from '@ng-icons/lucide';
+import { format } from 'date-fns';
+import { de } from 'date-fns/locale';
 
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
@@ -14,9 +16,10 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
+import { HlmProgressImports } from '@spartan-ng/helm/progress';
 
-import { Todo, DefaultTodo } from '../models/todo.model';
-import { TodoItemComponent} from '../shared/components/todo-item/todo-item.component'
+import { Todo, createDefaultTodo } from '../models/todo.model';
+import { TodoItemComponent } from '../shared/components/todo-item/todo-item.component';
 import { TodoService } from '../services/todo.service';
 
 @Component({
@@ -36,6 +39,7 @@ import { TodoService } from '../services/todo.service';
     HlmDialogImports,
     HlmInputImports,
     HlmTextareaImports,
+    HlmProgressImports,
     HlmDialogTrigger,
     TodoItemComponent,
   ],
@@ -45,7 +49,7 @@ export class HomeComponent implements OnInit {
 
   service = inject(TodoService);
 
-  todo: Todo = { ...DefaultTodo };
+  todo: Todo = { ...createDefaultTodo() };
 
   public readonly priorityOptions = [
     { label: 'Critical', value: 'critical' },
@@ -55,15 +59,22 @@ export class HomeComponent implements OnInit {
   ];
 
   doneTodos = computed(() => {
-    return this.todos().filter(x => x.checked);
-  })
+    return this.todos().filter((x) => x.checked);
+  });
+
+  today(): string {
+    return format(new Date(), 'PPPP', { locale: de });
+  }
+
+  progress = computed((): number => {
+    const normalizedPercentage = this.doneTodos().length / this.todos().length;
+    return normalizedPercentage * 100;
+  });
 
   async updateTodo(todo: Todo): Promise<void> {
-    this.todos.set(
-      this.todos().map((t) => (t.id === todo.id ? todo : t))
-    );
+    this.todos.set(this.todos().map((t) => (t.id === todo.id ? todo : t)));
     await this.service.update(todo);
-    console.info('todo succesfully updated')
+    console.info('todo succesfully updated');
   }
 
   async deleteTodo(todo: Todo): Promise<void> {
@@ -75,8 +86,8 @@ export class HomeComponent implements OnInit {
   async saveNewTodo(): Promise<void> {
     this.todos.set([...this.todos(), this.todo]);
     await this.service.save(this.todo);
-    this.todo = { ...DefaultTodo };
-    console.info('todo succesfully saved')
+    this.todo = { ...createDefaultTodo() };
+    console.info('todo succesfully saved');
   }
 
   ngOnInit(): void {
@@ -85,7 +96,7 @@ export class HomeComponent implements OnInit {
 
     void this.service.readAll().then((todos: Todo[]) => {
       this.todos.set(todos);
-      console.info(`${this.todos.length} todos successfully read`)
+      console.info(`${this.todos.length} todos successfully read`);
     });
   }
 }

@@ -16,13 +16,19 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDialogTrigger } from '@spartan-ng/helm/dialog';
 
-import { lucideTrash, lucideSquare, lucideSquareCheckBig } from '@ng-icons/lucide';
-import { Todo } from '../../../models/todo.model';
+import {
+  featherSquare,
+  featherCheckSquare,
+  featherTrash,
+} from '@ng-icons/feather-icons';
+import { Priority, Todo } from '../../../models/todo.model';
 
 @Component({
   selector: 'app-todo-item',
   templateUrl: 'todo-item.component.html',
-  providers: [provideIcons({ lucideTrash, lucideSquare, lucideSquareCheckBig })],
+  providers: [
+    provideIcons({ featherTrash, featherSquare, featherCheckSquare }),
+  ],
   imports: [
     NgClass,
     NgIcon,
@@ -38,15 +44,14 @@ import { Todo } from '../../../models/todo.model';
     HlmInputImports,
     HlmTextareaImports,
     HlmDialogTrigger,
-  ]
+  ],
 })
-
 export class TodoItemComponent implements OnInit {
   todo = input.required<Todo>();
   todoChange = output<Todo>();
   delete = output<Todo>();
 
-  todoBuffer : Todo | null = null;
+  todoBuffer: Todo | null = null;
 
   ngOnInit(): void {
     this.todoBuffer = this.todo();
@@ -55,7 +60,7 @@ export class TodoItemComponent implements OnInit {
   toggleChecked(): void {
     this.todoChange.emit({
       ...this.todo(),
-      checked: !this.todo().checked
+      checked: !this.todo().checked,
     });
   }
 
@@ -65,5 +70,15 @@ export class TodoItemComponent implements OnInit {
 
   deleteTodo(): void {
     this.delete.emit(this.todo());
+  }
+
+  getPriorityBackgroundClass(): string {
+    const classes: Record<Priority, string> = {
+      low: 'border-l-4 border-l-green-500',
+      medium: 'border-l-4 border-l-blue-500',
+      high: 'border-l-4 border-l-orange-500',
+      critical: 'border-l-4 border-l-red-500',
+    };
+    return classes[this.todo().priority];
   }
 }

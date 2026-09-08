@@ -1,20 +1,27 @@
 <div class="flex items-center justify-between">
-  <div class="flex items-center gap-2">
-    <div class="mt-1" (click)="toggleChecked()">
-      @if(this.todo().checked) {
-      <ng-icon name="lucideSquareCheckBig" />
+  <div class="flex items-center gap-5">
+    <div class="h-6" [ngClass]="getPriorityBackgroundClass()"></div>
+    <div class="mt-[8px] text-gray-400" (click)="toggleChecked()">
+      @if (this.todo().checked) {
+        <ng-icon size="1.4rem" name="featherCheckSquare" />
       }
-      @if(!this.todo().checked) {
-      <ng-icon name="lucideSquare" />
+      @if (!this.todo().checked) {
+        <ng-icon size="1.4rem" name="featherSquare" />
       }
     </div>
 
-    <button type="button" class="cursor-pointer text-left" [ngClass]="this.todo().checked ? 'line-through': ''"
-      [hlmDialogTriggerFor]="dialog">{{ this.todo().description }}</button>
+    <button
+      type="button"
+      class="cursor-pointer text-left"
+      [ngClass]="this.todo().checked ? 'line-through text-gray-100/50' : ''"
+      [hlmDialogTriggerFor]="dialog"
+    >
+      {{ this.todo().description }}
+    </button>
   </div>
-  <div class=" flex gap-1">
+  <div class="flex gap-1">
     <button hlmBtn variant="outline" size="icon" (click)="deleteTodo()">
-      <ng-icon name="lucideTrash" />
+      <ng-icon name="featherTrash " />
     </button>
   </div>
 </div>
@@ -27,15 +34,19 @@
 
     <fieldset hlmFieldSet>
       @if (this.todoBuffer) {
-      <div hlmFieldGroup>
-        <div hlmField>
-          <label hlmFieldLabel for="field-input-description">{{
-            'FORM.DESCRIPTION' | translate
+        <div hlmFieldGroup>
+          <div hlmField>
+            <label hlmFieldLabel for="field-input-description">{{
+              'FORM.DESCRIPTION' | translate
             }}</label>
-          <input hlmInput id="field-input-description" [value]="this.todoBuffer.description"
-            (change)="this.todoBuffer.description = $event.target.value" />
+            <input
+              hlmInput
+              id="field-input-description"
+              [value]="this.todoBuffer.description"
+              (change)="this.todoBuffer.description = $event.target.value"
+            />
+          </div>
         </div>
-      </div>
       }
     </fieldset>
 
