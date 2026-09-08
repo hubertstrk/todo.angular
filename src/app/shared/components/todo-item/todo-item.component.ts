@@ -20,6 +20,7 @@ import {
   featherSquare,
   featherCheckSquare,
   featherTrash,
+  featherX,
 } from '@ng-icons/feather-icons';
 import { Priority, Todo } from '../../../models/todo.model';
 
@@ -27,7 +28,7 @@ import { Priority, Todo } from '../../../models/todo.model';
   selector: 'app-todo-item',
   templateUrl: 'todo-item.component.html',
   providers: [
-    provideIcons({ featherTrash, featherSquare, featherCheckSquare }),
+    provideIcons({ featherTrash, featherSquare, featherCheckSquare, featherX }),
   ],
   imports: [
     NgClass,
